@@ -1,12 +1,4 @@
-from os import system
-
 def open_bank(user, connection):
-    system("cls")
-
-    print(f'Hi {user["name"]}')
-    display_options(user, connection)
-
-def display_options(user, connection):
     print("\na. Check Balance")
     print("b. Deposit")
     print("c. Withdraw")
@@ -21,11 +13,14 @@ def display_options(user, connection):
             check_balance(user)
         case "d":
             edit_account(user, connection)
+        case "e":
+            close_account(user, connection)
         case _:
             print("Invalid Option")
             print()
-            display_options(user, connection)
-            
+            open_bank(user, connection)
+    
+    open_bank(user, connection)
 
 def check_balance(user):
     print(f'You have ${user["money"]} in your account.')
@@ -59,6 +54,8 @@ def change_password(user, connection):
         connection.commit()
         cursor.close()
 
+        user["pin"] = new_password
+
 def change_name(user, connection):
     new_name = input("\nWhat do you want to change your name to: ")
     change = input(f'Are you sure you want to change your name to \"{new_name}\" (Y/N) ').lower()
@@ -72,3 +69,21 @@ def change_name(user, connection):
 
         connection.commit()
         cursor.close()
+
+        user["name"] = new_name
+
+def close_account(user, connection):
+    change = input("Are you sure you want to delete you account. This is PERMANENT! (Y/N) ")
+
+    if (change == "n"): return
+
+    cursor = connection.cursor()
+
+    delete_account = f'DELETE FROM users WHERE id={user["id"]}'
+
+    cursor.execute(delete_account)
+    connection.commit()
+    cursor.close()
+
+    print("account deleted...")
+    exit()
