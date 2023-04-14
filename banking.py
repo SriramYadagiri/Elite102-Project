@@ -4,7 +4,7 @@ def open_bank(user, connection):
     system("cls")
 
     print(f'Hi {user["name"]}')
-    display_options(connection)
+    display_options(user, connection)
 
 def display_options(user, connection):
     print("\na. Check Balance")
@@ -24,7 +24,7 @@ def display_options(user, connection):
         case _:
             print("Invalid Option")
             print()
-            display_options()
+            display_options(user, connection)
             
 
 def check_balance(user):
@@ -52,7 +52,7 @@ def change_password(user, connection):
     if change != "n":
         cursor = connection.cursor()
 
-        changeUserPassword = (f'UPDATE users SET pin = {new_password} WHERE id = {user["id"]}')
+        changeUserPassword = (f'UPDATE users SET pin = \"{new_password}\" WHERE id = {user["id"]}')
 
         cursor.execute(changeUserPassword)
 
@@ -61,12 +61,14 @@ def change_password(user, connection):
 
 def change_name(user, connection):
     new_name = input("\nWhat do you want to change your name to: ")
-    change = input(f'Are you sure you want to change your name to {new_name} (Y/N) ').lower()
+    change = input(f'Are you sure you want to change your name to \"{new_name}\" (Y/N) ').lower()
 
     if change != "n":
         cursor = connection.cursor()
 
-        changeUserName = (f'UPDATE users SET name = {new_name} WHERE id = {user["id"]}')
+        changeUserName = (f'UPDATE users SET name = \"{new_name}\" WHERE id = {user["id"]}')
 
         cursor.execute(changeUserName)
+
+        connection.commit()
         cursor.close()

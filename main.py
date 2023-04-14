@@ -4,7 +4,6 @@
 # - Implement deposit
 # - Implement withdraw
 # - Allow users to close accounts
-# - Allow users to modify their account (such as edit name, PIN, or any other personal identification)
 # - Admins should be able to close and modify other accounts
 
 import mysql.connector

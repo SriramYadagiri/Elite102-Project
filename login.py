@@ -22,7 +22,7 @@ def user_login(connection):
 
    cursor = connection.cursor()
 
-   query = (f'SELECT * FROM users WHERE accountNumber = {account_number} AND pin = \"{pin}\"')
+   query = (f'SELECT * FROM users WHERE accountNumber = \"{account_number}\" AND pin = \"{pin}\"')
 
    cursor.execute(query)
 
