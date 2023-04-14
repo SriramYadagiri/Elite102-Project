@@ -1,9 +1,7 @@
 # TODO
-# - Add adminstrators
 # - Implement check balance
 # - Implement deposit
 # - Implement withdraw
-# - Allow users to close accounts
 # - Admins should be able to close and modify other accounts
 
 import mysql.connector
