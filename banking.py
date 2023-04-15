@@ -1,5 +1,5 @@
 from decimal import Decimal
-
+from os import system
 
 def open_bank(user, connection):
     print("a. Check Balance")
@@ -7,15 +7,18 @@ def open_bank(user, connection):
     print("c. Withdraw")
     print("d. Edit Your Account")
     print("e. Close Your Account")
-    print("f. Logout")
+    print("f. View Account Activity")
+    print("g. Logout")
 
     if (user["admin"]):
         print("\nAdmin Privileges")
-        print("g. Modify other accounts")
-        print("h. Close accounts")
+        print("h. Modify other accounts")
+        print("i. Close accounts")
 
     print()
     option = input("\nChoose an option: ")
+
+    system("cls")
 
     match option.lower():
         case "a":
@@ -30,6 +33,8 @@ def open_bank(user, connection):
             close_account(user, connection)
             return
         case "f":
+            show_history(user, connection)
+        case "g":
             user = None
             return
         case _:
@@ -40,7 +45,7 @@ def open_bank(user, connection):
     open_bank(user, connection)
 
 def check_balance(user):
-    print(f'You have ${user["money"]} in your account.')
+    print(f'\nYou have ${user["money"]} in your account.\n')
 
 def edit_account(user, connection):
     print("\nWhat would you like to change...\n")
@@ -48,6 +53,8 @@ def edit_account(user, connection):
     print("b. name")
     print()
     option = input("Choose an option: ").lower()
+
+
 
     if option == "a":
         change_password(user, connection)
@@ -112,11 +119,17 @@ def deposit(user, connection):
     deposit_user_money = (f'UPDATE users SET money = money+{amount} WHERE id={user["id"]}')
 
     cursor.execute(deposit_user_money)
+
+    update_history = (f'INSERT INTO history (id, type, amount) VALUES ({user["id"]}, \"{"deposit"}\", {amount})')
+    cursor.execute(update_history)
+
     connection.commit()
     cursor.close()
 
     user["money"] += Decimal(amount)
     print("Deposited money...")
+
+    
 
 def withdraw(user, connection):
     amount = input("How much would you like to withdraw? ")
@@ -126,9 +139,24 @@ def withdraw(user, connection):
     withdraw_user_money = (f'UPDATE users SET money = money-{amount} WHERE id={user["id"]}')
 
     cursor.execute(withdraw_user_money)
+
+    update_history = (f'INSERT INTO history (id, type, amount) VALUES ({user["id"]}, \"{"withdrawal"}\", {amount})')
+    cursor.execute(update_history)
+
     connection.commit()
     cursor.close()
 
-    print(user)
     user["money"] -= Decimal(amount)
     print("Widthdrew money...")
+
+def show_history(user, connection):
+    cursor = connection.cursor()
+
+    get_history = (f'SELECT * FROM history WHERE id={user["id"]}')
+
+    cursor.execute(get_history)
+
+    for row in cursor:
+        print(f'{row[1].title()} of ${row[2]}')
+    
+    print()

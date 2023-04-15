@@ -1,6 +1,5 @@
 # TODO
 # - Admins should be able to close and modify other accounts
-# - Store transaction history and allow users to view their history
 # - Bunch of bug fixes
 # - Make an actual UI
 
