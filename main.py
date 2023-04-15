@@ -1,8 +1,8 @@
 # TODO
-# - Implement check balance
-# - Implement deposit
-# - Implement withdraw
 # - Admins should be able to close and modify other accounts
+# - Store transaction history and allow users to view their history
+# - Bunch of bug fixes
+# - Make an actual UI
 
 import mysql.connector
 from login import login
@@ -17,6 +17,7 @@ def main():
    system("cls")
    print(f'Hi {user["name"]}\n')
    open_bank(user, connection)
+   main()
 
 if __name__ == '__main__':
    main()

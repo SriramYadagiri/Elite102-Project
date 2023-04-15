@@ -42,7 +42,7 @@ def create_account(connection):
 
    cursor = connection.cursor()
 
-   addUser = (f'INSERT INTO users (id, accountNumber, pin, name, money) VALUES ({account_number}, \"{password}\", \"{name}\", 50)')
+   addUser = (f'INSERT INTO users (accountNumber, pin, name, money) VALUES ({account_number}, \"{password}\", \"{name}\", 50)')
 
    cursor.execute(addUser)
 

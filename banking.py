@@ -1,20 +1,37 @@
+from decimal import Decimal
+
+
 def open_bank(user, connection):
-    print("\na. Check Balance")
+    print("a. Check Balance")
     print("b. Deposit")
     print("c. Withdraw")
     print("d. Edit Your Account")
     print("e. Close Your Account")
     print("f. Logout")
+
+    if (user["admin"]):
+        print("\nAdmin Privileges")
+        print("g. Modify other accounts")
+        print("h. Close accounts")
+
     print()
     option = input("\nChoose an option: ")
 
     match option.lower():
         case "a":
             check_balance(user)
+        case "b":
+            deposit(user, connection)
+        case "c":
+            withdraw(user, connection)
         case "d":
             edit_account(user, connection)
         case "e":
             close_account(user, connection)
+            return
+        case "f":
+            user = None
+            return
         case _:
             print("Invalid Option")
             print()
@@ -86,4 +103,32 @@ def close_account(user, connection):
     cursor.close()
 
     print("account deleted...")
-    exit()
+
+def deposit(user, connection):
+    amount = input("How much would you like to deposit? ")
+
+    cursor = connection.cursor()
+    
+    deposit_user_money = (f'UPDATE users SET money = money+{amount} WHERE id={user["id"]}')
+
+    cursor.execute(deposit_user_money)
+    connection.commit()
+    cursor.close()
+
+    user["money"] += Decimal(amount)
+    print("Deposited money...")
+
+def withdraw(user, connection):
+    amount = input("How much would you like to withdraw? ")
+
+    cursor = connection.cursor()
+    
+    withdraw_user_money = (f'UPDATE users SET money = money-{amount} WHERE id={user["id"]}')
+
+    cursor.execute(withdraw_user_money)
+    connection.commit()
+    cursor.close()
+
+    print(user)
+    user["money"] -= Decimal(amount)
+    print("Widthdrew money...")
