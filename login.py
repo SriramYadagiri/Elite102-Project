@@ -1,25 +1,6 @@
 from random import randint
 
-def login(connection):
-   print("a. Login")
-   print("b. Create Account")
-   print()
-   choice = input("Select an option: ")
-   choice = choice.lower()
-
-   if choice == "a": user = user_login(connection)
-   elif choice == "b": user = create_account(connection)
-   else:
-      print("\nInvalid Input!\n")
-      login()
-
-   return user
-
-def user_login(connection):
-   print()
-   account_number = input("Account Number: ")
-   pin = input("7-digit Pin: ")
-
+def user_login(connection, account_number, pin):
    cursor = connection.cursor()
 
    query = (f'SELECT * FROM users WHERE accountNumber = \"{account_number}\" AND pin = \"{pin}\"')
@@ -33,12 +14,8 @@ def user_login(connection):
    user = dict((column_names[i], response[i]) for i in range(len(response)))
    return user
 
-def create_account(connection):
-   name = input("Name: ")
-   password = input("Set a password (7 characters or less): ")
+def create_account(connection, name, password):
    account_number = generate_account_number()
-
-   print(f'Your account number is {account_number}. Make sure to save this number!')
 
    cursor = connection.cursor()
 
@@ -49,9 +26,7 @@ def create_account(connection):
    connection.commit()
    cursor.close()
 
-   print()
-   print("Login: ")
-   return user_login(connection)
+   return user_login(connection, account_number, password)
 
 def generate_account_number():
    numb = ""
