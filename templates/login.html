@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Home Page</title>
+</head>
+<body style="background-color: #f2f2f2;">
+    <div class="w3-container w3-teal">
+        <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="w3-panel w3-pale-green w3-border w3-margin w3-animate-opacity">
+                    <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-right">&times;</span>
+                    <h3>Success!</h3>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action = "http://localhost:5000/login" method = "post" class="w3-display-middle">
+        <p><input type = "text" placeholder="Enter Account Number" name = "an" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+        <br>
+        <p><input type = "text" placeholder="Enter Password" name = "pw" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+        <br>
+        <br>
+        <input type = "submit" value = "Login" style="padding-left: 25px;padding-right: 25px;margin-left:25%" class="w3-teal w3-btn w3-round-xxlarge" />
+    </form>
+
+    <div class="w3-container w3-teal" style="position: fixed; bottom: 0; width: 100%;">
+        <p>Copyright © 2023. All rights reserved.</p>
+    </div>
+</body>
+</html>

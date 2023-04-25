@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Account</title>
+
+    <style>
+        .label {
+            font-size: small;
+            color: gray;
+            margin-right: 15%;
+        }
+
+        .info-div {
+            padding: 1%;
+            border-bottom: 1px solid lightgray;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .heading {
+            border-bottom: 2px solid darkslategray;
+            font-weight: lighter;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="w3-container w3-teal">
+        <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
+        <h3 class="w3-margin-left" >Edit Account Information</h3>
+        <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right" id="selector-bars" onclick="toggle_sidebar()"></p>
+    </div>
+
+    <div id="profile-info" style="width: 40%">
+        <h2 class="heading">Profile Information</h2>
+        <div class="info-div">
+            <span class="label">Full Name</span>
+            <span>{{ user["name"].title() }}</span>
+        </div>
+        <div class="info-div">
+            <span class="label">Password </span>
+            <span>{{ user["pin"] }}</span>
+        </div>
+    </div>
+</body>
+</html>

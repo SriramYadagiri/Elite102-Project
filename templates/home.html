@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Home Page</title>
+</head>
+<body style="background-color: #f2f2f2;">
+    <div class="w3-container w3-teal">
+        <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
+    </div>
+
+    <div class="w3-display-middle">
+        <a href="/login"><button class="w3-button w3-teal w3-round-xxlarge w3-display-middle">Login</button></a>
+        {% for i in range(4) %}
+                <br>
+        {% endfor %}
+        <a href="/create-account"><button class="w3-button w3-teal w3-round-xxlarge">Create Account</button></a>
+    </div>
+
+    <div class="w3-container w3-teal" style="position: fixed; bottom: 0; width: 100%;">
+        <p>Copyright © 2023. All rights reserved.</p>
+    </div>
+</body>
+</html>

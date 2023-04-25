@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Account</title>
+
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+        width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #888; 
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+        }
+
+        #selector-bars:hover {
+            color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-container w3-teal">
+        <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
+        <h3 class="w3-margin-left" >Hi {{ name.title() }}</h3>
+        <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right" id="selector-bars" onclick="toggle_sidebar()"></p>
+    </div>
+
+    <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-right w3-cyan" style="width:15%;right:0;display:none" id="mySidebar">
+        <a href="/edit-account" class="w3-bar-item w3-button"><i class="fa fa-user w3-large"></i>&nbsp;Edit Account</a>
+        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
+        <a href="http://localhost:5000/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-container w3-half" id="history" style="height: 550px; overflow-x: auto; padding-right: 0px; margin-top: 10px;">
+            <h3 class="w3-teal" style="text-align: center; margin-bottom: 0%; margin-top: 0%;">Current Balance: ${{balance}}</h3>
+            <table class="w3-table-all">
+                <tr class="w3-pale-green">
+                    <th>Transaction</th>
+                    <th class="w3-center">Amount</th>
+                    <th class="w3-center">Date</th>
+                    <th class="w3-center">Balance</th>
+                </tr>
+                {% for row in history %}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td class="w3-center">${{row[1]}}</td>
+                        <td class="w3-center">{{row[2]}}</td>
+                        <td class="w3-center">${{row[3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="w3-container w3-half" style="margin-top: 15%;padding-left: 15%;">
+            <form action = "http://localhost:5000/withdrawal" method = "post">
+                <label for="amount">Enter Amount</label>
+                <br>
+                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
+                <input type = "submit" value = "Withdraw" class="w3-button w3-round-xxlarge w3-teal"/>
+            </form>
+
+            <br>
+            <br>
+        
+            <form action = "http://localhost:5000/deposit" method = "post">
+                <label for="amount">Enter Amount</label>
+                <br>
+                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
+                <input type = "submit" value = "Deposit" class="w3-button w3-round-xxlarge w3-teal"/>
+            </form>
+
+            
+        </div>
+    </div>
+
+    <script>
+        function toggle_sidebar() {
+            let sidebar = document.getElementById("mySidebar");
+            document.getElementById("mySidebar").style.display = (sidebar.style.display == "block" ? "none" : "block");
+        }
+    </script>
+</body>
+</html>
