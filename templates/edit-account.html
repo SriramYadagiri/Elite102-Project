@@ -12,40 +12,56 @@
         .label {
             font-size: small;
             color: gray;
-            margin-right: 15%;
+            display: block;
+            width: 100px;
+            padding-bottom: 10px;
         }
 
         .info-div {
             padding: 1%;
+            margin-left: 5%;
             border-bottom: 1px solid lightgray;
             overflow: hidden;
             white-space: nowrap;
+            display: flex;
         }
 
         .heading {
             border-bottom: 2px solid darkslategray;
             font-weight: lighter;
         }
-
     </style>
 
 </head>
 <body>
     <div class="w3-container w3-teal">
         <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
-        <h3 class="w3-margin-left" >Edit Account Information</h3>
+        <h3 class="w3-margin-left" >Edit Account</h3>
         <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right" id="selector-bars" onclick="toggle_sidebar()"></p>
     </div>
 
-    <div id="profile-info" style="width: 40%">
+    <div id="profile-info" class="w3-container w3-display-middle" style="width: 40%">
         <h2 class="heading">Profile Information</h2>
         <div class="info-div">
-            <span class="label">Full Name</span>
-            <span>{{ user["name"].title() }}</span>
+            <div style="padding-top: 1px;width:90%">
+                <span class="label">Full Name</span>
+                <span>{{ user["name"].upper() }}</span>
+            </div>
+            <span class="w3-xlarge" style="float: right"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
         </div>
         <div class="info-div">
-            <span class="label">Password </span>
-            <span>{{ user["pin"] }}</span>
+            <div style="padding-top: 1px;width:90%">
+                <span class="label">Password</span>
+                <span>{{ user["pin"] }}</span>
+            </div>
+            <span class="w3-xlarge"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
+        </div>
+        <div class="info-div">
+            <div style="padding-top: 1px;width:90%">
+                <span class="label">Account Number</span>
+                <span>{{ user["accountNumber"] }}</span>
+            </div>
+            <span class="w3-xlarge"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
         </div>
     </div>
 </body>
