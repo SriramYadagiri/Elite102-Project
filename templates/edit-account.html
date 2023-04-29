@@ -37,32 +37,91 @@
     <div class="w3-container w3-teal">
         <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
         <h3 class="w3-margin-left" >Edit Account</h3>
-        <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right" id="selector-bars" onclick="toggle_sidebar()"></p>
+        <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right w3-btn" id="selector-bars" onclick="toggle_sidebar()"></p>
+    </div>
+
+    <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-right w3-cyan" style="width:15%;right:0;display:none" id="mySidebar">
+        <a href="/account" class="w3-bar-item w3-button"><i class="fa fa-home w3-large"></i>&nbsp;Home</a>
+        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
+        <a href="http://localhost:5000/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
     </div>
 
     <div id="profile-info" class="w3-container w3-display-middle" style="width: 40%">
         <h2 class="heading">Profile Information</h2>
+        
         <div class="info-div">
             <div style="padding-top: 1px;width:90%">
                 <span class="label">Full Name</span>
-                <span>{{ user["name"].upper() }}</span>
+                <span>{{ user["fname"].upper() + " " + user["lname"].upper() }}</span>
             </div>
-            <span class="w3-xlarge" style="float: right"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
-        </div>
-        <div class="info-div">
-            <div style="padding-top: 1px;width:90%">
-                <span class="label">Password</span>
-                <span>{{ user["pin"] }}</span>
-            </div>
-            <span class="w3-xlarge"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
         </div>
         <div class="info-div">
             <div style="padding-top: 1px;width:90%">
                 <span class="label">Account Number</span>
-                <span>{{ user["accountNumber"] }}</span>
+                <span id="accNumb">{{ user["accountNumber"] }}</span>
             </div>
-            <span class="w3-xlarge"><button class="w3-button w3-circle w3-teal"><i class="fa fa-pencil"></i></button></span>
+        </div>
+        <div class="info-div">
+            <div style="padding-top: 1px;width:90%">
+                <span class="label">Username</span>
+                <span id="username">{{ user["username"].upper() }}</span>
+            </div>
+            <span class="w3-xlarge" style="float: right" id="edit_name_button"><button class="w3-button w3-circle w3-teal" onclick="edit_name()"><i class="fa fa-pencil"></i></button></span>
+            <form action = "http://localhost:5000/update-username" method = "post" id="edit_name_div" style="padding-top: 1px;width:90%;display: none">
+                <p><input type = "text" name = "unm" id="username_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+                <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
+                <input type = "button" value = "Cancel" onclick="edit_name()" class="w3-teal w3-btn w3-round-xxlarge" />
+            </form>
+        </div>
+        <div class="info-div">
+            <div style="padding-top: 1px;width:90%">
+                <span class="label">Password</span>
+                <span id="pin">{{ user["pin"] }}</span>
+            </div>
+            <span class="w3-xlarge" style="float: right" id="edit_pin_button"><button class="w3-button w3-circle w3-teal" onclick="edit_pin()"><i class="fa fa-pencil"></i></button></span>
+            <form action = "http://localhost:5000/update-pin" method = "post" id="edit_pin_div" style="padding-top: 1px;width:90%;display: none">
+                <p><input type = "text" name = "pin" id="pin_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+                <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
+                <input type = "button" value = "Cancel" onclick="edit_pin()" class="w3-teal w3-btn w3-round-xxlarge" />
+            </form>
         </div>
     </div>
+
+    <form action = "http://localhost:5000/close-account" method = "post" class="w3-display-bottommiddle">
+        <input type = "submit" value = "Close Account" style="padding-left: 25px;padding-right: 25px;margin-left:25%;margin-bottom: 50%;" class="w3-teal w3-button w3-btn w3-round-xxlarge" />
+    </form>
+
+    <script>
+        function edit_name() {
+            let button = document.getElementById("edit_name_button");
+            let edit_name_div = document.getElementById("edit_name_div");
+            document.getElementById("username_input").value = document.getElementById("username").innerHTML;
+            if (button.style.display != "none") {
+                button.style.display = "none";
+                edit_name_div.style.display = "block";
+            } else {
+                button.style.display = "block";
+                edit_name_div.style.display = "none";
+            }
+        }
+
+        function edit_pin() {
+            let button = document.getElementById("edit_pin_button");
+            let edit_name_div = document.getElementById("edit_pin_div");
+            document.getElementById("pin_input").value = document.getElementById("pin").innerHTML;
+            if (button.style.display != "none") {
+                button.style.display = "none";
+                edit_name_div.style.display = "block";
+            } else {
+                button.style.display = "block";
+                edit_name_div.style.display = "none";
+            }
+        }
+
+        function toggle_sidebar() {
+            let sidebar = document.getElementById("mySidebar");
+            document.getElementById("mySidebar").style.display = (sidebar.style.display == "block" ? "none" : "block");
+        }
+    </script>
 </body>
 </html>

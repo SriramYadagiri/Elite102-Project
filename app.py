@@ -1,9 +1,7 @@
 #TODO:
-# - Close Accounts
-# - Edit Accounts
-# - Recover your account number
-# - Admin privelages
-# - Wire Transfer
+# - Recover your account number - NR
+# - Admin priveleges - NR
+# - Wire Transfer - NR
 # - Input Validation For:
 #    - login
 #    - Create Account
@@ -38,7 +36,7 @@ def account():
     if user == None:
         return "Invalid Address"
     else:
-        return render_template('account.html', balance=banking.get_balance(user), history=banking.get_history(connection, user), name=user["name"].upper())
+        return render_template('account.html', balance=banking.get_balance(user), history=banking.get_history(connection, user), name=user["username"].upper())
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -55,11 +53,13 @@ def login():
 @app.route('/create-account', methods=['POST', 'GET'])
 def new_account():
     if request.method == 'POST':
-        name = request.form['nm']
+        fname = request.form['fnm']
+        lname = request.form['lnm']
+        username = request.form['unm']
         pin = request.form['pw']
         
         global user
-        user = create_account(connection, name, pin)
+        user = create_account(connection, fname, lname, username, pin)
         flash(f'Your account number is: {user["accountNumber"]}')
         return redirect(url_for('login'))
     else:
@@ -68,6 +68,8 @@ def new_account():
 @app.route('/edit-account')
 def edit_account():
     global user
+    if user == None:
+        return "Invalid Address"
     return render_template('edit-account.html', user=user)
 
 @app.route('/withdrawal', methods=['POST'])
@@ -81,5 +83,24 @@ def deposit():
     amount = Decimal(request.form["amount"])
     banking.deposit(connection, user, amount)
     return redirect(url_for('account'))
+
+@app.route('/update-username', methods=['POST'])
+def update_username():
+    new_name = request.form["unm"]
+    banking.change_name(connection, user, new_name)
+    return redirect(url_for('edit_account'))
+
+@app.route('/update-pin', methods=['POST'])
+def update_pin():
+    new_pin = request.form["pin"]
+    banking.change_pin(connection, user, new_pin)
+    return redirect(url_for('edit_account'))
+
+@app.route('/close-account', methods=['POST'])
+def close_account():
+    global user
+    banking.close_account(connection, user)
+    user = None
+    return redirect(url_for('home'))
 
 app.run(debug=True)

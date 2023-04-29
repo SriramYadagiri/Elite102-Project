@@ -14,12 +14,12 @@ def user_login(connection, account_number, pin):
    user = dict((column_names[i], response[i]) for i in range(len(response)))
    return user
 
-def create_account(connection, name, password):
+def create_account(connection, fname, lname, username, password):
    account_number = generate_account_number()
 
    cursor = connection.cursor()
 
-   addUser = (f'INSERT INTO users (accountNumber, pin, name, money) VALUES ({account_number}, \"{password}\", \"{name}\", 50)')
+   addUser = (f'INSERT INTO users (accountNumber, pin, fname, lname, username, money) VALUES ({account_number}, \"{password}\", \"{fname}\", \"{lname}\", \"{username}\", 50)')
 
    cursor.execute(addUser)
 
