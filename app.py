@@ -8,6 +8,7 @@
 #    - Transactions
 
 from flask import Flask, flash, redirect, url_for, request, render_template
+from os import urandom
 from login import create_account, user_login
 from decimal import Decimal
 import banking
@@ -16,7 +17,7 @@ import mysql.connector
 connection = mysql.connector.connect(user = "root", database = "bank", password = "Leg8iesh")
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = urandom(12)
 
 user = None
 
