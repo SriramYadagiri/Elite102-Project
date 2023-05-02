@@ -42,8 +42,8 @@
 
     <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-right w3-cyan" style="width:15%;right:0;display:none" id="mySidebar">
         <a href="/account" class="w3-bar-item w3-button"><i class="fa fa-home w3-large"></i>&nbsp;Home</a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
-        <a href="http://localhost:5000/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
+        <a href="/wire-transfer" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
+        <a href="/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
     </div>
 
     <div id="profile-info" class="w3-container w3-display-middle" style="width: 40%">
@@ -67,7 +67,7 @@
                 <span id="username">{{ user["username"].upper() }}</span>
             </div>
             <span class="w3-xlarge" style="float: right" id="edit_name_button"><button class="w3-button w3-circle w3-teal" onclick="edit_name()"><i class="fa fa-pencil"></i></button></span>
-            <form action = "http://localhost:5000/update-username" method = "post" id="edit_name_div" style="padding-top: 1px;width:90%;display: none">
+            <form action = "/update-username" method = "post" id="edit_name_div" style="padding-top: 1px;width:90%;display: none">
                 <p><input type = "text" name = "unm" id="username_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
                 <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
                 <input type = "button" value = "Cancel" onclick="edit_name()" class="w3-teal w3-btn w3-round-xxlarge" />
@@ -79,7 +79,7 @@
                 <span id="pin">{{ user["pin"] }}</span>
             </div>
             <span class="w3-xlarge" style="float: right" id="edit_pin_button"><button class="w3-button w3-circle w3-teal" onclick="edit_pin()"><i class="fa fa-pencil"></i></button></span>
-            <form action = "http://localhost:5000/update-pin" method = "post" id="edit_pin_div" style="padding-top: 1px;width:90%;display: none">
+            <form action = "/update-pin" method = "post" id="edit_pin_div" style="padding-top: 1px;width:90%;display: none">
                 <p><input type = "text" name = "pin" id="pin_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
                 <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
                 <input type = "button" value = "Cancel" onclick="edit_pin()" class="w3-teal w3-btn w3-round-xxlarge" />
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <form action = "http://localhost:5000/close-account" method = "post" class="w3-display-bottommiddle">
+    <form action = "/close-account" method = "post" class="w3-display-bottommiddle">
         <input type = "submit" value = "Close Account" style="padding-left: 25px;padding-right: 25px;margin-left:25%;margin-bottom: 50%;" class="w3-teal w3-button w3-btn w3-round-xxlarge" />
     </form>
 

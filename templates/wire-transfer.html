@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Account</title>
+</head>
+<body>
+    <div class="w3-container w3-teal">
+        <h1 class="w3-animate-left	w3-padding-16 w3-margin-left">Sriram's Banking</h1>
+        <h3 class="w3-margin-left" >Wire Transfer</h3>
+        <p class="fa fa-bars w3-xxlarge w3-display-topright w3-margin-right w3-btn" id="selector-bars" onclick="toggle_sidebar()"></p>
+    </div>
+
+    <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-right w3-cyan" style="width:15%;right:0;display:none" id="mySidebar">
+        <a href="/account" class="w3-bar-item w3-button"><i class="fa fa-home w3-large"></i>&nbsp;Home</a>
+        <a href="/edit-account" class="w3-bar-item w3-button"><i class="fa fa-user w3-large"></i>&nbsp;Edit Account</a>
+        <a href="/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
+    </div>
+
+    <form action = "/wire" method = "post" class="w3-display-middle">
+        <p class="w3-tooltip"><input type = "text" name = "receiver" placeholder="Receiver" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
+        <span style="position:absolute;left:0;top:30px" class="w3-text w3-tag w3-teal w3-round w3-opacity-min">Enter Account Number</span></p>
+        <br>
+        <input type = "text" name = "amount" placeholder="Enter Amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <input type = "submit" value = "Deposit" class="w3-button w3-btn w3-round-xxlarge w3-teal"/>
+        </div>
+    </form>
+    
+    <script>
+        function toggle_sidebar() {
+            let sidebar = document.getElementById("mySidebar");
+            document.getElementById("mySidebar").style.display = (sidebar.style.display == "block" ? "none" : "block");
+        }
+    </script>
+</body>
+</html>

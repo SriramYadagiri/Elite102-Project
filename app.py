@@ -72,6 +72,13 @@ def edit_account():
         return "Invalid Address"
     return render_template('edit-account.html', user=user)
 
+@app.route('/wire-transfer')
+def wire_transfer():
+    global user
+    if user == None:
+        return "Invalid Address"
+    return render_template('wire-transfer.html', user=user)
+
 @app.route('/withdrawal', methods=['POST'])
 def withdrawal():
     amount = Decimal(request.form["amount"])
@@ -84,6 +91,14 @@ def deposit():
     banking.deposit(connection, user, amount)
     return redirect(url_for('account'))
 
+@app.route('/wire', methods=['POST'])
+def wire():
+    global user
+    receiver = int(request.form["receiver"])
+    amount = Decimal(request.form["amount"])
+    banking.wire(connection, user, receiver, amount)
+    return redirect(url_for('wire_transfer'))
+
 @app.route('/update-username', methods=['POST'])
 def update_username():
     new_name = request.form["unm"]
@@ -93,7 +108,7 @@ def update_username():
 @app.route('/update-pin', methods=['POST'])
 def update_pin():
     new_pin = request.form["pin"]
-    banking.change_pin(connection, user, new_pin)
+    banking.change_password(connection, user, new_pin)
     return redirect(url_for('edit_account'))
 
 @app.route('/close-account', methods=['POST'])

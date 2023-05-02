@@ -43,8 +43,8 @@
 
     <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-right w3-cyan" style="width:15%;right:0;display:none" id="mySidebar">
         <a href="/edit-account" class="w3-bar-item w3-button"><i class="fa fa-user w3-large"></i>&nbsp;Edit Account</a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
-        <a href="http://localhost:5000/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
+        <a href="/wire-transfer" class="w3-bar-item w3-button"><i class="fa fa-money w3-large"></i>&nbsp;Wire Transfer</a>
+        <a href="/logout" class="w3-bar-item w3-button"><i class="fa fa-arrow-circle-left w3-large"></i>&nbsp;Logout</a>
     </div>
 
     <div class="w3-row">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="w3-container w3-half" style="margin-top: 15%;padding-left: 15%;">
-            <form action = "http://localhost:5000/withdrawal" method = "post">
+            <form action = "/withdrawal" method = "post">
                 <label for="amount">Enter Amount</label>
                 <br>
                 <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
@@ -79,13 +79,12 @@
             <br>
             <br>
         
-            <form action = "http://localhost:5000/deposit" method = "post">
+            <form action = "/deposit" method = "post">
                 <label for="amount">Enter Amount</label>
                 <br>
                 <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
                 <input type = "submit" value = "Deposit" class="w3-button w3-round-xxlarge w3-teal"/>
             </form>
-
             
         </div>
     </div>
