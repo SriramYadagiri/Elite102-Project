@@ -68,7 +68,7 @@
             </div>
             <span class="w3-xlarge" style="float: right" id="edit_name_button"><button class="w3-button w3-circle w3-teal" onclick="edit_name()"><i class="fa fa-pencil"></i></button></span>
             <form action = "/update-username" method = "post" id="edit_name_div" style="padding-top: 1px;width:90%;display: none">
-                <p><input type = "text" name = "unm" id="username_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+                <p><input type = "text" name = "unm" id="username_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" required/></p>
                 <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
                 <input type = "button" value = "Cancel" onclick="edit_name()" class="w3-teal w3-btn w3-round-xxlarge" />
             </form>
@@ -80,7 +80,7 @@
             </div>
             <span class="w3-xlarge" style="float: right" id="edit_pin_button"><button class="w3-button w3-circle w3-teal" onclick="edit_pin()"><i class="fa fa-pencil"></i></button></span>
             <form action = "/update-pin" method = "post" id="edit_pin_div" style="padding-top: 1px;width:90%;display: none">
-                <p><input type = "text" name = "pin" id="pin_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+                <p><input type = "text" name = "pin" id="pin_input" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" required/></p>
                 <input type = "submit" value = "Save Changes" class="w3-teal w3-btn w3-round-xxlarge" />
                 <input type = "button" value = "Cancel" onclick="edit_pin()" class="w3-teal w3-btn w3-round-xxlarge" />
             </form>

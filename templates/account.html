@@ -72,8 +72,8 @@
             <form action = "/withdrawal" method = "post">
                 <label for="amount">Enter Amount</label>
                 <br>
-                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
-                <input type = "submit" value = "Withdraw" class="w3-button w3-round-xxlarge w3-teal"/>
+                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;" type="number" min="0" required/>
+                <input type = "submit" value = "Withdraw" class="w3-button w3-round-xxlarge w3-teal" required/>
             </form>
 
             <br>
@@ -82,8 +82,8 @@
             <form action = "/deposit" method = "post">
                 <label for="amount">Enter Amount</label>
                 <br>
-                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;"/>
-                <input type = "submit" value = "Deposit" class="w3-button w3-round-xxlarge w3-teal"/>
+                <input type = "text" name = "amount" style="border: none;border-bottom: 1px solid teal;outline: none;" type="number" min="0" required/>
+                <input type = "submit" value = "Deposit" class="w3-button w3-round-xxlarge w3-teal" required/>
             </form>
             
         </div>

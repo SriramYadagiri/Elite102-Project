@@ -27,9 +27,9 @@
     {% endwith %}
 
     <form action = "/login" method = "post" class="w3-display-middle">
-        <p><input type = "text" placeholder="Enter Account Number" name = "an" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+        <p><input type = "text" placeholder="Enter Account Number" name = "an" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" maxlength="7" type="number" required/></p>
         <br>
-        <p><input type = "text" placeholder="Enter Password" name = "pw" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" /></p>
+        <p><input type = "text" placeholder="Enter Password" name = "pw" style="border: none;border-bottom: 1px solid teal;outline: none; background-color: #f2f2f2;" maxlength="7" required/></p>
         <br>
         <br>
         <input type = "submit" value = "Login" style="padding-left: 25px;padding-right: 25px;margin-left:25%" class="w3-teal w3-btn w3-round-xxlarge" />
